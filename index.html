@@ -512,8 +512,12 @@
       gap: 1.25rem;
       width: 100%;
     }
-    .training-stack .info-box .wo-text + #map {
+    .training-stack .info-box #map {
       margin-top: 1.1rem;
+    }
+    .training-stack .info-box h3.training-subhead {
+      margin-top: 1.15rem;
+      margin-bottom: 0.65rem;
     }
     #map {
       width: 100%;
@@ -1009,11 +1013,17 @@
           </article>
         </div>
         <div class="training-stack">
-          <div class="info-box" aria-labelledby="treffpunkt-title">
-            <h3 id="treffpunkt-title">Treffpunkt</h3>
+          <div class="info-box" aria-labelledby="wo-title treffpunkt-title">
+            <h3 id="wo-title">Wo?</h3>
             <p class="wo-text">
-              Auf dem Asphalt-Bolzplatz am Bonifatiusplatz in Hannover-List, gleich neben dem Nilpferd-Spielplatz.
-              Wir treffen uns dort – der Marker auf der Karte zeigt den Platz.
+              Auf dem Asphalt-Bolzplatz Bonifatiusplatz, gleich neben dem Nilpferd-Spielplatz
+            </p>
+            <h3 id="treffpunkt-title" class="training-subhead">Treffpunkt</h3>
+            <p class="wo-text">
+              Wir treffen uns am Bonifatiusplatz in Hannover-List.
+            </p>
+            <p class="wo-text">
+              Der Treffpunkt ist auf der Karte markiert.
             </p>
             <div id="map" role="region" aria-label="Karte: Treffpunkt Bonifatiusplatz Hannover-List"></div>
           </div>
