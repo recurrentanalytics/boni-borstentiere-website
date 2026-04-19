@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Boni Borstentiere · Inline Hockey Hannover List</title>
-  <meta name="description" content="Boni Borstentiere – Inline-Hockey aus Hannover List. Zuhause in der Eilenriede. Kinder & Erwachsene, Probetraining, Rudelgeist seit 2026.">
+  <meta name="description" content="Was sind wir? Ein Borstentier! Inline Hockey aus Hannover List — zuhause am Boni und in der Eilenriede. Für Kinder und Erwachsene.">
   <meta property="og:title" content="Boni Borstentiere · Inline Hockey Hannover List">
-  <meta property="og:description" content="Inline Hockey im grünen Revier der Eilenriede. Kinder & Erwachsene willkommen.">
+  <meta property="og:description" content="Was sind wir? Ein Borstentier! Inline Hockey aus Hannover List — zuhause am Boni und in der Eilenriede. Für Kinder und Erwachsene.">
   <meta property="og:url" content="https://recurrentanalytics.github.io/boni-borstentiere-website/">
   <meta property="og:image" content="https://recurrentanalytics.github.io/boni-borstentiere-website/img/banner.png">
   <link rel="icon" href="./img/logo.png" type="image/png">
@@ -238,7 +238,7 @@
       opacity: 0.95;
     }
     .battle-cry {
-      margin: 0 0 2rem;
+      margin: 0 0 1rem;
       font-size: clamp(1.05rem, 3vw, 1.45rem);
       font-weight: 800;
       color: var(--orange);
@@ -247,6 +247,32 @@
       max-width: 36rem;
       margin-left: auto;
       margin-right: auto;
+    }
+    .hymne-player {
+      max-width: 480px;
+      margin: 24px auto;
+      background: rgba(247, 233, 192, 0.08);
+      border: 1px solid rgba(247, 233, 192, 0.2);
+      padding: 20px;
+      border-radius: 12px;
+    }
+    .hymne-label {
+      color: var(--creme);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .hymne-player audio { width: 100%; }
+    .hymne-caption {
+      font-style: italic;
+      color: var(--creme);
+      opacity: 0.7;
+      text-align: center;
+      margin-top: 8px;
+      font-size: 0.8rem;
     }
     .hero-actions {
       display: flex;
@@ -316,6 +342,21 @@
     @media (min-width: 768px) { .intro { font-size: 1.1rem; } }
     .rudel { background: var(--creme); color: var(--waldgruen); }
     .rudel .section-title { color: var(--waldgruen); }
+    .boni-erklaerung {
+      max-width: 700px;
+      margin: 32px auto 48px;
+      background: rgba(180, 190, 127, 0.2);
+      border-left: 4px solid var(--orange);
+      padding: 20px 24px;
+      border-radius: 0 8px 8px 0;
+    }
+    .boni-erklaerung p {
+      color: var(--dunkelgruen);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .boni-erklaerung strong { color: var(--waldgruen); }
     .cards-3 {
       display: grid;
       gap: 1.25rem;
@@ -393,33 +434,75 @@
     .info-box ul { margin: 0; padding-left: 1.15rem; }
     .info-box li { margin: 0.35rem 0; }
     .info-box .note { margin: 1rem 0 0; font-weight: 600; font-size: 0.95rem; }
-    .galerie { background: var(--creme); color: var(--waldgruen); }
-    .galerie .section-title { color: var(--kastanienbraun); }
-    .gallery-grid {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: 1fr;
-      margin-bottom: 1.5rem;
+    #galerie {
+      padding: 80px 24px;
+      background: var(--creme);
+      color: var(--waldgruen);
     }
-    @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
-    .gallery-tile {
-      aspect-ratio: 4 / 3;
-      background: var(--waldgruen);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--hellgruen);
-      font-weight: 800;
-      letter-spacing: 0.04em;
+    #galerie h2 {
+      color: var(--waldgruen);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       text-align: center;
-      padding: 1rem;
-      border: 2px solid rgba(45, 74, 43, 0.2);
-      transition: transform 0.2s var(--ease);
+      margin: 0 0 16px;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 900;
     }
-    .gallery-tile:hover { transform: scale(1.02); }
-    .galerie-foot { margin: 0; font-weight: 600; opacity: 0.9; }
+    .galerie-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 48px;
+      color: var(--dunkelgruen);
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    .galerie-intro strong { color: var(--waldgruen); }
+    .galerie-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    @media (min-width: 641px) {
+      .galerie-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .galerie-item {
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      aspect-ratio: 4 / 3;
+      cursor: pointer;
+    }
+    .galerie-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .galerie-item:hover img { transform: scale(1.04); }
+    .galerie-item figcaption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(30, 50, 28, 0.9));
+      color: var(--creme);
+      padding: 32px 20px 16px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 1rem;
+    }
+    .galerie-credit {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--dunkelgruen);
+      opacity: 0.6;
+      margin-top: 32px;
+      font-style: italic;
+    }
     .cta-borstentier {
       background: var(--orange);
       color: var(--creme);
@@ -454,7 +537,6 @@
     .social-row a:hover { transform: translateY(-3px); background: rgba(61, 40, 23, 0.15); }
     .social-row a:focus-visible { outline: 2px solid var(--creme); outline-offset: 3px; }
     .social-row svg { width: 1.35rem; height: 1.35rem; fill: currentColor; }
-    .social-row svg.threads-glyph text { fill: currentColor; }
     .site-footer {
       background: var(--dunkelgruen);
       color: var(--creme);
@@ -552,6 +634,13 @@
       <h1 id="hero-title">Boni Borstentiere</h1>
       <p class="hero-sub">Inline Hockey · Hannover List · Seit 2026</p>
       <p class="battle-cry">Was sind wir? — Ein Borstentier!</p>
+      <div class="hymne-player">
+        <div class="hymne-label">🎵 Unsere Hymne</div>
+        <audio controls preload="metadata" src="./audio/hymne.mp3">
+          Dein Browser unterstützt keine Audiowiedergabe.
+        </audio>
+        <div class="hymne-caption">Was sind wir? — Ein Borstentier!</div>
+      </div>
       <div class="hero-actions">
         <a class="btn btn-primary" href="#training">Zum Probetraining</a>
         <a class="btn btn-secondary" href="https://www.instagram.com/boni.borstentiere/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -571,6 +660,14 @@
           Zuhause in der Eilenriede, unterwegs auf Rollen, unbesiegbar als Rudel. Kinder und Erwachsene,
           die zusammen lernen, schwitzen, fallen, aufstehen und vor allem: Spaß haben.
         </p>
+        <div class="boni-erklaerung">
+          <p>
+            <strong>Warum heißen wir „Boni“?</strong><br>
+            Weil der Bonifatiusplatz in der List — unser Platz, unser Revier —
+            von allen hier nur „Boni“ genannt wird. Wir sind die Borstentiere
+            vom Boni.
+          </p>
+        </div>
         <div class="cards-3">
           <article class="card">
             <div class="card-icon" aria-hidden="true">🐗</div>
@@ -633,19 +730,42 @@
       </div>
     </section>
 
-    <section class="galerie" id="galerie" aria-labelledby="galerie-title">
-      <div class="container">
-        <h2 class="section-title" id="galerie-title">Highlights aus dem Revier</h2>
-        <div class="gallery-grid" role="list">
-          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
-          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
-          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
-          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
-          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
-          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
-        </div>
-        <p class="galerie-foot">Bald kommt mehr Action aus der Eilenriede</p>
+    <section id="galerie" aria-labelledby="galerie-title">
+      <h2 id="galerie-title">Unser Revier</h2>
+      <p class="galerie-intro">
+        Zwischen dem <strong>„Boni“</strong> — so nennen die Hannoveraner
+        den Bonifatiusplatz — und der <strong>Eilenriede</strong>:
+        hier spielen, lernen und wachsen die Borstentiere.
+      </p>
+
+      <div class="galerie-grid">
+        <figure class="galerie-item large">
+          <img src="./img/photos/boni-platz.jpg"
+               alt="Der Bonifatiusplatz in Hannover List — unser Revier"
+               loading="lazy" width="800" height="600">
+          <figcaption>Der Boni — unser Platz</figcaption>
+        </figure>
+        <figure class="galerie-item">
+          <img src="./img/photos/eilenriede-weg.jpg"
+               alt="Waldweg in der Eilenriede im Herbst"
+               loading="lazy" width="800" height="600">
+          <figcaption>Eilenriede im Herbst</figcaption>
+        </figure>
+        <figure class="galerie-item">
+          <img src="./img/photos/boni-spielplatz.jpg"
+               alt="Spielplatz am Bonifatiusplatz mit Holz-Nilpferd"
+               loading="lazy" width="800" height="600">
+          <figcaption>Spielen am Boni</figcaption>
+        </figure>
+        <figure class="galerie-item">
+          <img src="./img/photos/boni-schale.jpg"
+               alt="Spielgerät auf dem Bonifatiusplatz in Hannover List"
+               loading="lazy" width="800" height="600">
+          <figcaption>Lister Urgestein</figcaption>
+        </figure>
       </div>
+
+      <p class="galerie-credit">Fotos: Wikimedia Commons · CC BY-SA 4.0</p>
     </section>
 
     <section class="cta-borstentier" id="kontakt" aria-labelledby="cta-title">
@@ -653,14 +773,9 @@
         <h2 class="section-title" id="cta-title">Borstentier werden</h2>
         <p>Du willst mitmachen? Ob Kind oder Erwachsene – wir freuen uns auf dich.</p>
         <a class="cta-mail" href="mailto:boni.borstentiere@protonmail.com">boni.borstentiere@protonmail.com</a>
-        <div class="social-row" aria-label="Social Media">
+        <div class="social-row" aria-label="Instagram">
           <a href="https://www.instagram.com/boni.borstentiere/" target="_blank" rel="noopener noreferrer" aria-label="Boni Borstentiere auf Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zm5.25-3.75a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>
-          </a>
-          <a href="#" aria-label="Threads (Platzhalter)">
-            <svg class="threads-glyph" viewBox="0 0 24 24" aria-hidden="true">
-              <text x="12" y="17" text-anchor="middle" font-size="15" font-weight="800" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">@</text>
-            </svg>
           </a>
         </div>
       </div>
