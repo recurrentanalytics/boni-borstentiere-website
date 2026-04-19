@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boni Borstentiere · Inline Hockey Hannover List</title>
+  <meta name="description" content="Boni Borstentiere – Inline-Hockey aus Hannover List. Zuhause in der Eilenriede. Kinder & Erwachsene, Probetraining, Rudelgeist seit 2026.">
+  <meta property="og:title" content="Boni Borstentiere · Inline Hockey Hannover List">
+  <meta property="og:description" content="Inline Hockey im grünen Revier der Eilenriede. Kinder & Erwachsene willkommen.">
+  <meta property="og:image" content="./img/banner.png">
+  <link rel="icon" href="./img/logo.png" type="image/png">
+  <style>
+    :root {
+      --waldgruen: #2D4A2B;
+      --dunkelgruen: #1E3A1C;
+      --kastanienbraun: #6B4423;
+      --dunkelbraun: #3D2817;
+      --orange: #D97B3A;
+      --creme: #F7E9C0;
+      --hellgruen: #B4BE7F;
+      --header-h: 4.25rem;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--waldgruen);
+      background: var(--creme);
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    .skip {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .skip:focus {
+      position: fixed;
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+      padding: 0.75rem 1rem;
+      background: var(--creme);
+      color: var(--waldgruen);
+      z-index: 2000;
+      outline: 2px solid var(--orange);
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+    .site-header.is-scrolled {
+      background: var(--waldgruen);
+      border-color: rgba(247, 233, 192, 0.15);
+    }
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      font-size: 0.85rem;
+      color: var(--creme);
+      text-transform: uppercase;
+    }
+    .brand img { width: 40px; height: auto; }
+    .site-header:not(.is-scrolled) .brand { color: var(--creme); text-shadow: 0 1px 2px rgba(0,0,0,0.35); }
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 2.75rem;
+      height: 2.75rem;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 6px;
+      color: var(--creme);
+    }
+    .nav-toggle:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .nav-toggle-bar {
+      display: block;
+      height: 2px;
+      width: 1.35rem;
+      margin: 0 auto;
+      background: currentColor;
+      border-radius: 1px;
+      transition: transform 0.3s var(--ease), opacity 0.25s;
+    }
+    .site-header.is-open .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .site-header.is-open .nav-toggle-bar:nth-child(2) { opacity: 0; }
+    .site-header.is-open .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .main-nav {
+      position: fixed;
+      inset: var(--header-h) 0 0 0;
+      background: var(--dunkelgruen);
+      padding: 1.5rem 1.25rem 2rem;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.35s var(--ease), opacity 0.3s;
+    }
+    .site-header.is-open .main-nav {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .main-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .main-nav a {
+      display: block;
+      padding: 0.85rem 0.5rem;
+      color: var(--creme);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .main-nav a:hover, .main-nav a:focus-visible {
+      background: rgba(247, 233, 192, 0.08);
+      color: var(--hellgruen);
+    }
+    @media (min-width: 768px) {
+      .nav-toggle { display: none; }
+      .main-nav {
+        position: static;
+        inset: auto;
+        background: transparent;
+        padding: 0;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .main-nav ul {
+        flex-direction: row;
+        gap: 0.35rem;
+      }
+      .main-nav a { padding: 0.5rem 0.65rem; font-size: 0.78rem; }
+    }
+    @media (min-width: 1024px) {
+      .main-nav a { font-size: 0.82rem; padding: 0.5rem 0.85rem; }
+    }
+    .hero {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(var(--header-h) + 2rem) 1.5rem 5rem;
+      position: relative;
+      overflow: hidden;
+      background-color: var(--waldgruen);
+      color: var(--creme);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("./img/banner.png") center / cover no-repeat;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(30, 58, 28, 0.82);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath fill='none' stroke='%23000' stroke-opacity='0.07' stroke-width='1' d='M0 40h80M40 0v80M-20 20l120 120M20-20l120 120'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-logo { width: min(220px, 48vw); margin: 0 auto 1.25rem; }
+    .hero h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--creme);
+      line-height: 1.1;
+    }
+    .hero-sub {
+      margin: 0 0 1.75rem;
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: 0.95;
+    }
+    .battle-cry {
+      margin: 0 0 2rem;
+      font-size: clamp(1.05rem, 3vw, 1.45rem);
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      max-width: 36rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease), background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn:focus-visible { outline: 2px solid var(--creme); outline-offset: 3px; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--orange);
+      color: var(--dunkelbraun);
+      border-color: var(--orange);
+    }
+    .btn-primary:hover { background: #e88a4a; border-color: #e88a4a; }
+    .btn-secondary {
+      background: transparent;
+      color: var(--creme);
+      border-color: var(--creme);
+    }
+    .btn-secondary:hover { background: rgba(247, 233, 192, 0.12); }
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--creme);
+      opacity: 0.75;
+      animation: bounce 2.2s ease-in-out infinite;
+    }
+    .scroll-hint svg { display: block; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+    section {
+      padding: 5rem 1.5rem;
+    }
+    @media (min-width: 768px) { section { padding: 5.5rem 2rem; } }
+    @media (min-width: 1024px) { section { padding: 6rem 2rem; } }
+    .container { max-width: 1120px; margin: 0 auto; }
+    .section-title {
+      margin: 0 0 1.25rem;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+    .intro { font-size: 1.05rem; max-width: 52rem; margin: 0 0 2.5rem; }
+    @media (min-width: 768px) { .intro { font-size: 1.1rem; } }
+    .rudel { background: var(--creme); color: var(--waldgruen); }
+    .rudel .section-title { color: var(--waldgruen); }
+    .cards-3 {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 768px) {
+      .cards-3 { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    }
+    .card {
+      background: rgba(45, 74, 43, 0.06);
+      border: 2px solid rgba(45, 74, 43, 0.12);
+      border-radius: 10px;
+      padding: 1.5rem 1.35rem;
+      transition: transform 0.25s var(--ease), border-color 0.25s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(45, 74, 43, 0.28); }
+    .card-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .card h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--kastanienbraun);
+    }
+    .card p { margin: 0; font-size: 0.98rem; }
+    .training {
+      background: var(--waldgruen);
+      color: var(--creme);
+    }
+    .training .section-title { color: var(--creme); }
+    .cards-2 {
+      display: grid;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (min-width: 768px) { .cards-2 { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+    .training-card {
+      background: rgba(30, 58, 28, 0.55);
+      border: 2px solid rgba(247, 233, 192, 0.2);
+      border-radius: 10px;
+      padding: 1.75rem 1.5rem;
+      transition: transform 0.25s var(--ease), border-color 0.25s;
+    }
+    .training-card:hover { transform: translateY(-3px); border-color: rgba(247, 233, 192, 0.4); }
+    .training-card h3 {
+      margin: 0 0 1rem;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--hellgruen);
+    }
+    .training-card dl { margin: 0 0 1.25rem; }
+    .training-card dt {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      margin-top: 0.65rem;
+    }
+    .training-card dt:first-child { margin-top: 0; }
+    .training-card dd { margin: 0.15rem 0 0; font-weight: 600; }
+    .training-card .btn-primary { width: 100%; margin-top: 0.25rem; }
+    .info-box {
+      border: 2px solid rgba(247, 233, 192, 0.25);
+      border-radius: 10px;
+      padding: 1.5rem 1.35rem;
+      max-width: 40rem;
+    }
+    .info-box h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--hellgruen);
+    }
+    .info-box ul { margin: 0; padding-left: 1.15rem; }
+    .info-box li { margin: 0.35rem 0; }
+    .info-box .note { margin: 1rem 0 0; font-weight: 600; font-size: 0.95rem; }
+    .galerie { background: var(--creme); color: var(--waldgruen); }
+    .galerie .section-title { color: var(--kastanienbraun); }
+    .gallery-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      margin-bottom: 1.5rem;
+    }
+    @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+    .gallery-tile {
+      aspect-ratio: 4 / 3;
+      background: var(--waldgruen);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--hellgruen);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-align: center;
+      padding: 1rem;
+      border: 2px solid rgba(45, 74, 43, 0.2);
+      transition: transform 0.2s var(--ease);
+    }
+    .gallery-tile:hover { transform: scale(1.02); }
+    .galerie-foot { margin: 0; font-weight: 600; opacity: 0.9; }
+    .cta-borstentier {
+      background: var(--orange);
+      color: var(--creme);
+      text-align: center;
+    }
+    .cta-borstentier .section-title { color: var(--creme); }
+    .cta-borstentier p { margin: 0 auto 1.5rem; max-width: 32rem; font-size: 1.05rem; }
+    .cta-mail {
+      display: inline-block;
+      font-size: clamp(1rem, 3.5vw, 1.35rem);
+      font-weight: 800;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.75rem;
+      padding: 0.35rem 0;
+      border-bottom: 2px solid rgba(247, 233, 192, 0.5);
+      transition: border-color 0.2s, opacity 0.2s;
+    }
+    .cta-mail:hover, .cta-mail:focus-visible { border-color: var(--creme); opacity: 0.95; }
+    .social-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .social-row a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      border: 2px solid var(--creme);
+      color: var(--creme);
+      transition: transform 0.2s var(--ease), background 0.2s;
+    }
+    .social-row a:hover { transform: translateY(-3px); background: rgba(61, 40, 23, 0.15); }
+    .social-row a:focus-visible { outline: 2px solid var(--creme); outline-offset: 3px; }
+    .social-row svg { width: 1.35rem; height: 1.35rem; fill: currentColor; }
+    .social-row svg.threads-glyph text { fill: currentColor; }
+    .site-footer {
+      background: var(--dunkelgruen);
+      color: var(--creme);
+      padding: 2rem 1.5rem 1.5rem;
+    }
+    .footer-top {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(247, 233, 192, 0.15);
+    }
+    @media (min-width: 768px) {
+      .footer-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: var(--creme);
+    }
+    .footer-brand img { width: 44px; }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+    }
+    .footer-links a {
+      color: var(--hellgruen);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-copy {
+      text-align: center;
+      margin: 1.25rem 0 0;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#hero" aria-label="Boni Borstentiere – Start">
+        <img src="./img/logo-mono.png" alt="" width="80" height="80" decoding="async">
+        <span>Borstentiere</span>
+      </a>
+      <button
+        type="button"
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="Menü öffnen"
+      >
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="#rudel">Rudel</a></li>
+          <li><a href="#training">Training</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <img class="hero-logo" src="./img/logo.png" alt="Logo Boni Borstentiere" width="280" height="280" decoding="async">
+      <h1 id="hero-title">Boni Borstentiere</h1>
+      <p class="hero-sub">Inline Hockey · Hannover List · Seit 2026</p>
+      <p class="battle-cry">Was sind wir? — Ein Borstentier!</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#training">Zum Probetraining</a>
+        <a class="btn btn-secondary" href="#">Instagram</a>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="rudel" id="rudel" aria-labelledby="rudel-title">
+      <div class="container">
+        <h2 class="section-title" id="rudel-title">Das Rudel</h2>
+        <p class="intro">
+          Wir sind die Boni Borstentiere – ein Inline-Hockey-Team aus der Hannoverschen List.
+          Zuhause in der Eilenriede, unterwegs auf Rollen, unbesiegbar als Rudel. Kinder und Erwachsene,
+          die zusammen lernen, schwitzen, fallen, aufstehen und vor allem: Spaß haben.
+        </p>
+        <div class="cards-3">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🐗</div>
+            <h3>Gemeinschaft</h3>
+            <p>Ein Rudel, das zusammenhält. Auf und neben dem Platz.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🏒</div>
+            <h3>Hockey</h3>
+            <p>Inline Hockey mit Herz, Biss und Spielfreude. Für Anfänger und Fortgeschrittene.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🌳</div>
+            <h3>Eilenriede</h3>
+            <p>Trainiert im Grünen. Der größte Stadtwald Europas ist unser Revier.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="training" id="training" aria-labelledby="training-title">
+      <div class="container">
+        <h2 class="section-title" id="training-title">Training</h2>
+        <div class="cards-2">
+          <article class="training-card">
+            <h3>Kindertraining</h3>
+            <dl>
+              <dt>Alter</dt>
+              <dd>6–12 Jahre</dd>
+              <dt>Trainingszeit</dt>
+              <dd>Demnächst</dd>
+              <dt>Ort</dt>
+              <dd>Wird bekannt gegeben</dd>
+            </dl>
+            <a class="btn btn-primary" href="#kontakt">Probetraining anmelden</a>
+          </article>
+          <article class="training-card">
+            <h3>Erwachsene</h3>
+            <dl>
+              <dt>Alter</dt>
+              <dd>Ab 18 Jahren</dd>
+              <dt>Trainingszeit</dt>
+              <dd>Demnächst</dd>
+              <dt>Ort</dt>
+              <dd>Wird bekannt gegeben</dd>
+            </dl>
+            <a class="btn btn-primary" href="#kontakt">Probetraining anmelden</a>
+          </article>
+        </div>
+        <div class="info-box">
+          <h3>Was brauche ich?</h3>
+          <ul>
+            <li>Inline-Skates</li>
+            <li>Helm</li>
+            <li>Schläger</li>
+            <li>Schoner</li>
+          </ul>
+          <p class="note">Leihmaterial beim Probetraining verfügbar</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="galerie" id="galerie" aria-labelledby="galerie-title">
+      <div class="container">
+        <h2 class="section-title" id="galerie-title">Highlights aus dem Revier</h2>
+        <div class="gallery-grid" role="list">
+          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
+          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
+          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
+          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
+          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
+          <div class="gallery-tile" role="listitem">🐗 Bild folgt</div>
+        </div>
+        <p class="galerie-foot">Bald kommt mehr Action aus der Eilenriede</p>
+      </div>
+    </section>
+
+    <section class="cta-borstentier" id="kontakt" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 class="section-title" id="cta-title">Borstentier werden</h2>
+        <p>Du willst mitmachen? Ob Kind oder Erwachsene – wir freuen uns auf dich.</p>
+        <a class="cta-mail" href="mailto:kontakt@boni-borstentiere.de">kontakt@boni-borstentiere.de</a>
+        <div class="social-row" aria-label="Social Media">
+          <a href="#" aria-label="Instagram (Platzhalter)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zm5.25-3.75a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>
+          </a>
+          <a href="#" aria-label="Threads (Platzhalter)">
+            <svg class="threads-glyph" viewBox="0 0 24 24" aria-hidden="true">
+              <text x="12" y="17" text-anchor="middle" font-size="15" font-weight="800" font-family="system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">@</text>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <a class="footer-brand" href="#hero">
+        <img src="./img/logo-mono.png" alt="" width="88" height="88" decoding="async">
+        <span>Boni Borstentiere · Hannover List</span>
+      </a>
+      <div class="footer-links">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Boni Borstentiere · Made with 🐗 in Hannover</p>
+  </footer>
+
+  <script>
+    (function () {
+      var header = document.getElementById('site-header');
+      var toggle = document.getElementById('nav-toggle');
+      var nav = document.getElementById('main-nav');
+      var mq = window.matchMedia('(min-width: 768px)');
+
+      function setScrolled() {
+        header.classList.toggle('is-scrolled', window.scrollY > 50);
+      }
+
+      function closeMenu() {
+        header.classList.remove('is-open');
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Menü öffnen');
+        }
+        document.body.style.overflow = '';
+      }
+
+      function openMenu() {
+        header.classList.add('is-open');
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'true');
+          toggle.setAttribute('aria-label', 'Menü schließen');
+        }
+        document.body.style.overflow = 'hidden';
+      }
+
+      function onToggleClick() {
+        if (header.classList.contains('is-open')) closeMenu();
+        else openMenu();
+      }
+
+      function onMqChange() {
+        if (mq.matches) closeMenu();
+      }
+
+      setScrolled();
+      window.addEventListener('scroll', setScrolled, { passive: true });
+
+      if (toggle) toggle.addEventListener('click', onToggleClick);
+
+      mq.addEventListener ? mq.addEventListener('change', onMqChange) : mq.addListener(onMqChange);
+
+      nav.addEventListener('click', function (e) {
+        var t = e.target;
+        if (t.tagName === 'A' && !mq.matches) closeMenu();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && header.classList.contains('is-open')) closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>
