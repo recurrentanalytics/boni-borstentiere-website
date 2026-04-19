@@ -22,7 +22,7 @@ jobs:
       - name: Build static bundle
         run: |
           mkdir -p _site
-          cp index.html .nojekyll _site/
+          cp index.html impressum.html datenschutz.html .nojekyll _site/
           cp -r img _site/
 
       - uses: JamesIves/github-pages-deploy-action@v4
