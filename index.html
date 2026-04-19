@@ -441,7 +441,8 @@
     .cards-2 {
       display: grid;
       gap: 1.25rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
+      align-items: stretch;
     }
     @media (min-width: 768px) { .cards-2 { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
     .training-card {
@@ -450,6 +451,9 @@
       border-radius: 10px;
       padding: 1.75rem 1.5rem;
       transition: transform 0.25s var(--ease), border-color 0.25s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
     .training-card:hover { transform: translateY(-3px); border-color: rgba(247, 233, 192, 0.4); }
     .training-card h3 {
@@ -480,7 +484,10 @@
       border: 2px solid rgba(247, 233, 192, 0.25);
       border-radius: 10px;
       padding: 1.5rem 1.35rem;
-      max-width: 40rem;
+    }
+    .training .info-box {
+      width: 100%;
+      max-width: none;
     }
     .info-box h3 {
       margin: 0 0 0.75rem;
@@ -499,29 +506,21 @@
       line-height: 1.6;
       color: var(--creme);
     }
-    .training-treffpunkt {
-      margin: 2.5rem auto 0;
-      max-width: 40rem;
+    .training-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      width: 100%;
     }
-    .training-treffpunkt h3 {
-      margin: 0 0 0.75rem;
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--hellgruen);
-    }
-    .training-treffpunkt-intro {
-      margin: 0 0 1.25rem;
-      font-size: 0.98rem;
-      line-height: 1.6;
-      color: var(--creme);
+    .training-stack .info-box .wo-text + #map {
+      margin-top: 1.1rem;
     }
     #map {
       width: 100%;
       height: 280px;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
-      border: 2px solid rgba(247, 233, 192, 0.25);
+      border: 2px solid rgba(247, 233, 192, 0.2);
       background: rgba(30, 58, 28, 0.4);
       z-index: 1;
     }
@@ -530,19 +529,6 @@
     }
     .training .leaflet-container {
       font-family: inherit;
-    }
-    .training-extras {
-      margin-top: 1.75rem;
-      max-width: 40rem;
-      margin-left: auto;
-      margin-right: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .training-extras .info-box {
-      max-width: none;
-      width: 100%;
     }
     .training-equip-list {
       margin: 0 0 0.65rem;
@@ -568,7 +554,7 @@
       font-weight: 600;
       color: var(--creme);
     }
-    .training-extras .wo-text + .wo-text {
+    .training-stack .info-box .wo-text + .wo-text {
       margin-top: 0.75rem;
     }
     #galerie {
@@ -1022,21 +1008,15 @@
             <p>Wir entwickeln gerade zusätzlich ein einfaches, spielerisches Trainingsformat für Kinder.</p>
           </article>
         </div>
-        <div class="info-box">
-          <h3>Wo?</h3>
-          <p class="wo-text">
-            Auf dem Asphalt-Bolzplatz Bonifatiusplatz, gleich neben dem Nilpferd-Spielplatz
-          </p>
-        </div>
-        <div class="training-treffpunkt" aria-labelledby="treffpunkt-title">
-          <h3 id="treffpunkt-title">Treffpunkt</h3>
-          <p class="training-treffpunkt-intro">
-            Wir treffen uns am Bonifatiusplatz in Hannover-List.<br>
-            Der Treffpunkt ist auf der Karte markiert.
-          </p>
-          <div id="map" role="region" aria-label="Karte: Treffpunkt Bonifatiusplatz Hannover-List"></div>
-        </div>
-        <div class="training-extras">
+        <div class="training-stack">
+          <div class="info-box" aria-labelledby="treffpunkt-title">
+            <h3 id="treffpunkt-title">Treffpunkt</h3>
+            <p class="wo-text">
+              Auf dem Asphalt-Bolzplatz am Bonifatiusplatz in Hannover-List, gleich neben dem Nilpferd-Spielplatz.
+              Wir treffen uns dort – der Marker auf der Karte zeigt den Platz.
+            </p>
+            <div id="map" role="region" aria-label="Karte: Treffpunkt Bonifatiusplatz Hannover-List"></div>
+          </div>
           <div class="info-box" aria-labelledby="ausruestung-title">
             <h3 id="ausruestung-title">Was braucht mein Kind?</h3>
             <ul class="training-equip-list">
