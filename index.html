@@ -348,6 +348,29 @@
     @media (min-width: 768px) { .intro { font-size: 1.1rem; } }
     .rudel { background: var(--creme); color: var(--waldgruen); }
     .rudel .section-title { color: var(--waldgruen); }
+    .rudel .jersey-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      max-width: min(22rem, 100%);
+      margin: 0 auto;
+    }
+    @media (max-width: 380px) {
+      .rudel .jersey-pair { grid-template-columns: 1fr; max-width: 14rem; }
+    }
+    .rudel .jersey-pair figure {
+      margin: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(107, 68, 35, 0.1);
+      box-shadow: 0 4px 20px rgba(45, 74, 43, 0.08);
+    }
+    .rudel .jersey-pair img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
     .cards-3 {
       display: grid;
       gap: 1.25rem;
@@ -559,11 +582,90 @@
         0 8px 32px rgba(45, 74, 43, 0.1),
         0 2px 10px rgba(61, 40, 23, 0.06);
     }
-    .bonny-comic-card img {
+    .bonny-comic-zoom {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+      font: inherit;
+      text-align: left;
+      border-radius: 10px;
+      line-height: 0;
+    }
+    .bonny-comic-zoom:focus-visible {
+      outline: 3px solid var(--orange);
+      outline-offset: 3px;
+    }
+    .bonny-comic-zoom img {
       width: 100%;
       height: auto;
       display: block;
       border-radius: 10px;
+    }
+    .bonny-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 10001;
+      padding: 1rem;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(30, 58, 28, 0.78);
+      cursor: zoom-out;
+    }
+    .bonny-lightbox[hidden] {
+      display: none !important;
+    }
+    .bonny-lightbox-panel {
+      position: relative;
+      max-width: min(96vw, 1400px);
+      width: 100%;
+      padding: 2.75rem 1rem 1.25rem;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+      cursor: default;
+    }
+    .bonny-lb-close {
+      position: absolute;
+      top: 0.65rem;
+      right: 0.65rem;
+      z-index: 2;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: var(--waldgruen);
+      color: var(--creme);
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .bonny-lb-close:hover {
+      background: var(--dunkelgruen);
+    }
+    .bonny-lb-close:focus-visible {
+      outline: 3px solid var(--orange);
+      outline-offset: 2px;
+    }
+    .bonny-lb-img {
+      display: block;
+      max-width: 100%;
+      max-height: min(85vh, 1200px);
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+      object-fit: contain;
+      border-radius: 8px;
     }
     .bonny-comic-caption {
       margin: 0.85rem 0 0;
@@ -769,6 +871,26 @@
         <p class="intro">
           Eltern sind willkommen und oft mit dabei.
         </p>
+        <div class="jersey-pair" role="group" aria-label="Borstentiere-Trikot, Vorder- und Rückseite">
+          <figure>
+            <img
+              src="./img/jersey_front.png"
+              alt="Grünes Inlinehockey-Trikot der Boni Borstentiere, Vorderseite mit Logo"
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async">
+          </figure>
+          <figure>
+            <img
+              src="./img/jersey_back.png"
+              alt="Grünes Inlinehockey-Trikot der Boni Borstentiere, Rückseite"
+              width="1024"
+              height="1024"
+              loading="lazy"
+              decoding="async">
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -843,11 +965,21 @@
           Begleite Bonny, unser kleines Wildschwein aus der Eilenriede, auf seinem Weg zum ersten großen Spiel mit den Boni Borstentieren. Eine Geschichte über Mut, Teamgeist und ganz viel Spaß am Hockey!
         </p>
         <figure class="bonny-comic-card">
-          <img
-            src="./img/bonny_comic.png"
-            alt="Comic: Bonny und das erste große Spiel — Bonny, das Wildschwein, und die Boni Borstentiere"
-            loading="lazy"
-            decoding="async">
+          <button
+            type="button"
+            id="bonny-comic-open"
+            class="bonny-comic-zoom"
+            aria-haspopup="dialog"
+            aria-controls="bonny-lightbox"
+            aria-expanded="false"
+            aria-label="Comic größer anzeigen"
+          >
+            <img
+              src="./img/bonny_comic.png"
+              alt=""
+              loading="lazy"
+              decoding="async">
+          </button>
           <figcaption class="bonny-comic-caption">Ein Comic der Boni Borstentiere</figcaption>
         </figure>
         <div class="bonny-cta-wrap">
@@ -895,6 +1027,24 @@
     </section>
   </main>
 
+  <div
+    id="bonny-lightbox"
+    class="bonny-lightbox"
+    hidden
+    role="dialog"
+    aria-modal="true"
+    aria-label="Comic in Großansicht"
+  >
+    <div class="bonny-lightbox-panel">
+      <button type="button" class="bonny-lb-close" aria-label="Schließen">&times;</button>
+      <img
+        class="bonny-lb-img"
+        src="./img/bonny_comic.png"
+        alt="Comic: Bonny und das erste große Spiel — Bonny, das Wildschwein, und die Boni Borstentiere"
+        decoding="async">
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="footer-top">
       <a class="footer-brand" href="#hero">
@@ -915,6 +1065,7 @@
       var toggle = document.getElementById('nav-toggle');
       var nav = document.getElementById('main-nav');
       var mq = window.matchMedia('(min-width: 768px)');
+      if (!header || !nav) return;
 
       function setScrolled() {
         header.classList.toggle('is-scrolled', window.scrollY > 50);
@@ -961,6 +1112,47 @@
 
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && header.classList.contains('is-open')) closeMenu();
+      });
+    })();
+
+    (function () {
+      var openBtn = document.getElementById('bonny-comic-open');
+      var lb = document.getElementById('bonny-lightbox');
+      var closeBtn = lb && lb.querySelector('.bonny-lb-close');
+      if (!openBtn || !lb || !closeBtn) return;
+
+      var bodyOverflowBefore = '';
+
+      function setExpanded(v) {
+        openBtn.setAttribute('aria-expanded', v ? 'true' : 'false');
+      }
+
+      function isOpen() {
+        return !lb.hasAttribute('hidden');
+      }
+
+      function openLb() {
+        bodyOverflowBefore = document.body.style.overflow;
+        lb.removeAttribute('hidden');
+        setExpanded(true);
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function closeLb() {
+        lb.setAttribute('hidden', '');
+        setExpanded(false);
+        document.body.style.overflow = bodyOverflowBefore;
+        openBtn.focus();
+      }
+
+      openBtn.addEventListener('click', openLb);
+      closeBtn.addEventListener('click', closeLb);
+      lb.addEventListener('click', function (e) {
+        if (e.target === lb) closeLb();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isOpen()) closeLb();
       });
     })();
   </script>
