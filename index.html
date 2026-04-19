@@ -10,6 +10,7 @@
   <meta property="og:url" content="https://recurrentanalytics.github.io/boni-borstentiere-website/">
   <meta property="og:image" content="https://recurrentanalytics.github.io/boni-borstentiere-website/img/banner.png">
   <link rel="icon" href="./img/logo.png" type="image/png">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <style>
     :root {
       --waldgruen: #2D4A2B;
@@ -498,6 +499,38 @@
       line-height: 1.6;
       color: var(--creme);
     }
+    .training-treffpunkt {
+      margin: 2.5rem auto 0;
+      max-width: 40rem;
+    }
+    .training-treffpunkt h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--hellgruen);
+    }
+    .training-treffpunkt-intro {
+      margin: 0 0 1.25rem;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--creme);
+    }
+    #map {
+      width: 100%;
+      height: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid rgba(247, 233, 192, 0.25);
+      background: rgba(30, 58, 28, 0.4);
+      z-index: 1;
+    }
+    @media (min-width: 768px) {
+      #map { height: 340px; }
+    }
+    .training .leaflet-container {
+      font-family: inherit;
+    }
     #galerie {
       padding: 80px 24px;
       background: var(--creme);
@@ -955,6 +988,14 @@
             Auf dem Asphalt-Bolzplatz Bonifatiusplatz, gleich neben dem Nilpferd-Spielplatz
           </p>
         </div>
+        <div class="training-treffpunkt" aria-labelledby="treffpunkt-title">
+          <h3 id="treffpunkt-title">Treffpunkt</h3>
+          <p class="training-treffpunkt-intro">
+            Wir treffen uns am Bonifatiusplatz in Hannover-List.<br>
+            Der Treffpunkt ist auf der Karte markiert.
+          </p>
+          <div id="map" role="region" aria-label="Karte: Treffpunkt Bonifatiusplatz Hannover-List"></div>
+        </div>
       </div>
     </section>
 
@@ -1098,6 +1139,33 @@
     <p class="footer-copy">© 2026 Boni Borstentiere · Mit Herz in Hannover gemacht</p>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    (function () {
+      function initTreffpunktMap() {
+        var el = document.getElementById('map');
+        if (!el || typeof L === 'undefined') return;
+        var lat = 52.3887349;
+        var lng = 9.7452632;
+        var map = L.map('map', { scrollWheelZoom: false }).setView([lat, lng], 18);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          maxZoom: 19
+        }).addTo(map);
+        var marker = L.marker([lat, lng]).addTo(map);
+        marker.bindPopup('<b>Boni Borstentiere 🐗</b><br>Hier treffen wir uns');
+        marker.openPopup();
+        requestAnimationFrame(function () {
+          map.invalidateSize();
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTreffpunktMap);
+      } else {
+        initTreffpunktMap();
+      }
+    })();
+  </script>
   <script>
     (function () {
       var header = document.getElementById('site-header');
