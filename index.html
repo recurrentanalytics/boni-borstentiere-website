@@ -58,6 +58,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      background-color: transparent;
       transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease);
       border-bottom: 1px solid transparent;
     }
@@ -179,7 +180,9 @@
     @media (min-width: 1024px) {
       .main-nav a { font-size: 0.82rem; padding: 0.5rem 0.85rem; }
     }
+    /* Hero unter den Header ziehen: bei transparentem Header sonst Body-Creme sichtbar */
     .hero {
+      margin-top: calc(-1 * var(--header-h));
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
