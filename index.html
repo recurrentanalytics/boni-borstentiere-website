@@ -531,6 +531,46 @@
     .training .leaflet-container {
       font-family: inherit;
     }
+    .training-extras {
+      margin-top: 1.75rem;
+      max-width: 40rem;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .training-extras .info-box {
+      max-width: none;
+      width: 100%;
+    }
+    .training-equip-list {
+      margin: 0 0 0.65rem;
+      padding-left: 1.15rem;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--creme);
+    }
+    .training-equip-list li {
+      margin: 0.3rem 0;
+    }
+    .training-equip-optional {
+      margin: 0 0 0.85rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--creme);
+      opacity: 0.92;
+    }
+    .training-equip-closing {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      font-weight: 600;
+      color: var(--creme);
+    }
+    .training-extras .wo-text + .wo-text {
+      margin-top: 0.75rem;
+    }
     #galerie {
       padding: 80px 24px;
       background: var(--creme);
@@ -995,6 +1035,31 @@
             Der Treffpunkt ist auf der Karte markiert.
           </p>
           <div id="map" role="region" aria-label="Karte: Treffpunkt Bonifatiusplatz Hannover-List"></div>
+        </div>
+        <div class="training-extras">
+          <div class="info-box" aria-labelledby="ausruestung-title">
+            <h3 id="ausruestung-title">Was braucht mein Kind?</h3>
+            <ul class="training-equip-list">
+              <li>Helm (Fahrradhelm reicht völlig)</li>
+              <li>Inlineskates</li>
+              <li>Handschuhe (zur Not einfache)</li>
+              <li>Schläger (wenn vorhanden)</li>
+              <li>Ball haben wir vor Ort</li>
+            </ul>
+            <p class="training-equip-optional">Optional: Schonerset</p>
+            <p class="training-equip-closing">
+              Für den Einstieg reicht einfache Ausrüstung – vieles kann man erstmal ausprobieren oder teilen.
+            </p>
+          </div>
+          <div class="info-box" aria-labelledby="wetter-title">
+            <h3 id="wetter-title">Wetter &amp; Ausfall</h3>
+            <p class="wo-text">
+              Da wir draußen spielen, kann es bei starkem Regen oder nasser Fläche ausfallen.
+            </p>
+            <p class="wo-text">
+              Für alle, die vorher Kontakt aufgenommen haben, geben wir rechtzeitig Bescheid.
+            </p>
+          </div>
         </div>
       </div>
     </section>
