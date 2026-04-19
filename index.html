@@ -348,28 +348,61 @@
     @media (min-width: 768px) { .intro { font-size: 1.1rem; } }
     .rudel { background: var(--creme); color: var(--waldgruen); }
     .rudel .section-title { color: var(--waldgruen); }
-    .rudel .jersey-pair {
+    .ueber-mit-trikots {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-      max-width: min(22rem, 100%);
-      margin: 0 auto;
+      gap: 1rem 1.25rem;
+      align-items: stretch;
     }
-    @media (max-width: 380px) {
-      .rudel .jersey-pair { grid-template-columns: 1fr; max-width: 14rem; }
+    .ueber-mit-trikots__text {
+      grid-column: 1 / -1;
+      grid-row: 1;
     }
-    .rudel .jersey-pair figure {
+    .jersey-flank--left {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .jersey-flank--right {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .ueber-mit-trikots__text .intro:last-child {
+      margin-bottom: 0;
+    }
+    .jersey-flank {
       margin: 0;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
-      background: #fff;
-      border: 1px solid rgba(107, 68, 35, 0.1);
-      box-shadow: 0 4px 20px rgba(45, 74, 43, 0.08);
+      background: var(--creme);
+      border: 1px solid rgba(107, 68, 35, 0.07);
+      box-shadow: none;
+      min-width: 0;
     }
-    .rudel .jersey-pair img {
+    .jersey-flank img {
       width: 100%;
       height: auto;
       display: block;
+    }
+    @media (min-width: 960px) {
+      .ueber-mit-trikots {
+        grid-template-columns: minmax(13rem, 26vw) minmax(0, 1fr) minmax(13rem, 26vw);
+        grid-template-rows: auto;
+        gap: clamp(1rem, 2.5vw, 2.75rem);
+        align-items: center;
+      }
+      .ueber-mit-trikots__text {
+        grid-column: 2;
+        grid-row: 1;
+        min-width: 0;
+      }
+      .jersey-flank--left {
+        grid-column: 1;
+        grid-row: 1;
+      }
+      .jersey-flank--right {
+        grid-column: 3;
+        grid-row: 1;
+      }
     }
     .cards-3 {
       display: grid;
@@ -862,17 +895,8 @@
     <section class="rudel" id="ueber-uns" aria-labelledby="ueber-uns-title">
       <div class="container">
         <h2 class="section-title" id="ueber-uns-title">Was ist das hier?</h2>
-        <p class="intro">
-          Die Boni Borstentiere sind aktuell keine feste Mannschaft, sondern ein offener Treff und eine Aufbaugruppe für Kinder im Grundschulalter.
-        </p>
-        <p class="intro">
-          Wir wollen Kindern einen einfachen Einstieg ins Inlinehockey ermöglichen – ohne Leistungsdruck, ohne komplizierte Strukturen, dafür mit viel Bewegung, Spiel und Spaß.
-        </p>
-        <p class="intro">
-          Eltern sind willkommen und oft mit dabei.
-        </p>
-        <div class="jersey-pair" role="group" aria-label="Borstentiere-Trikot, Vorder- und Rückseite">
-          <figure>
+        <div class="ueber-mit-trikots" role="group" aria-label="Über uns mit Trikot-Ansichten">
+          <figure class="jersey-flank jersey-flank--left">
             <img
               src="./img/jersey_front.png"
               alt="Grünes Inlinehockey-Trikot der Boni Borstentiere, Vorderseite mit Logo"
@@ -881,7 +905,18 @@
               loading="lazy"
               decoding="async">
           </figure>
-          <figure>
+          <div class="ueber-mit-trikots__text">
+            <p class="intro">
+              Die Boni Borstentiere sind aktuell keine feste Mannschaft, sondern ein offener Treff und eine Aufbaugruppe für Kinder im Grundschulalter.
+            </p>
+            <p class="intro">
+              Wir wollen Kindern einen einfachen Einstieg ins Inlinehockey ermöglichen – ohne Leistungsdruck, ohne komplizierte Strukturen, dafür mit viel Bewegung, Spiel und Spaß.
+            </p>
+            <p class="intro">
+              Eltern sind willkommen und oft mit dabei.
+            </p>
+          </div>
+          <figure class="jersey-flank jersey-flank--right">
             <img
               src="./img/jersey_back.png"
               alt="Grünes Inlinehockey-Trikot der Boni Borstentiere, Rückseite"
