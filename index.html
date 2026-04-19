@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boni Borstentiere · Inline Hockey Hannover List</title>
-  <meta name="description" content="Was sind wir? Ein Borstentier! Inline Hockey aus Hannover List — zuhause am Boni und in der Eilenriede. Für Kinder und Erwachsene.">
-  <meta property="og:title" content="Boni Borstentiere · Inline Hockey Hannover List">
-  <meta property="og:description" content="Was sind wir? Ein Borstentier! Inline Hockey aus Hannover List — zuhause am Boni und in der Eilenriede. Für Kinder und Erwachsene.">
+  <title>Boni Borstentiere · Kinder-Inlinehockey Hannover List</title>
+  <meta name="description" content="Kinder-Inlinehockey in der List: offener Treff und Aufbaugruppe. Bewegung, Spiel, erste Grundlagen mit Schläger und Ball – ohne Leistungsdruck.">
+  <meta property="og:title" content="Boni Borstentiere · Kinder-Inlinehockey Hannover List">
+  <meta property="og:description" content="Kinder-Inlinehockey in der List: offener Treff und Aufbaugruppe. Bewegung, Spiel, erste Grundlagen mit Schläger und Ball – ohne Leistungsdruck.">
   <meta property="og:url" content="https://recurrentanalytics.github.io/boni-borstentiere-website/">
   <meta property="og:image" content="https://recurrentanalytics.github.io/boni-borstentiere-website/img/banner.png">
   <link rel="icon" href="./img/logo.png" type="image/png">
@@ -237,16 +237,22 @@
       font-weight: 600;
       opacity: 0.95;
     }
-    .battle-cry {
-      margin: 0 0 1rem;
-      font-size: clamp(1.05rem, 3vw, 1.45rem);
-      font-weight: 800;
-      color: var(--orange);
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      max-width: 36rem;
-      margin-left: auto;
-      margin-right: auto;
+    .hero-lead {
+      margin: 0 auto 1.25rem;
+      max-width: 32rem;
+      font-size: clamp(0.95rem, 2.4vw, 1.1rem);
+      line-height: 1.55;
+      color: var(--creme);
+      text-align: center;
+    }
+    .hero-note {
+      margin: 1rem auto 0;
+      max-width: 28rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      color: var(--creme);
+      opacity: 0.85;
+      text-align: center;
     }
     .hymne-player {
       max-width: 480px;
@@ -342,21 +348,6 @@
     @media (min-width: 768px) { .intro { font-size: 1.1rem; } }
     .rudel { background: var(--creme); color: var(--waldgruen); }
     .rudel .section-title { color: var(--waldgruen); }
-    .boni-erklaerung {
-      max-width: 700px;
-      margin: 32px auto 48px;
-      background: rgba(180, 190, 127, 0.2);
-      border-left: 4px solid var(--orange);
-      padding: 20px 24px;
-      border-radius: 0 8px 8px 0;
-    }
-    .boni-erklaerung p {
-      color: var(--dunkelgruen);
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin: 0;
-    }
-    .boni-erklaerung strong { color: var(--waldgruen); }
     .cards-3 {
       display: grid;
       gap: 1.25rem;
@@ -417,6 +408,12 @@
     }
     .training-card dt:first-child { margin-top: 0; }
     .training-card dd { margin: 0.15rem 0 0; font-weight: 600; }
+    .training-card > p {
+      margin: 0 0 0.65rem;
+      font-size: 0.98rem;
+      line-height: 1.5;
+    }
+    .training-card > p:last-of-type { margin-bottom: 0; }
     .training-card .btn-primary { width: 100%; margin-top: 0.25rem; }
     .info-box {
       border: 2px solid rgba(247, 233, 192, 0.25);
@@ -434,6 +431,13 @@
     .info-box ul { margin: 0; padding-left: 1.15rem; }
     .info-box li { margin: 0.35rem 0; }
     .info-box .note { margin: 1rem 0 0; font-weight: 600; font-size: 0.95rem; }
+    .info-box .wo-text {
+      margin: 0;
+      font-weight: 400;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--creme);
+    }
     #galerie {
       padding: 80px 24px;
       background: var(--creme);
@@ -601,7 +605,7 @@
   <a class="skip" href="#main">Zum Inhalt springen</a>
   <header class="site-header" id="site-header">
     <div class="header-inner">
-      <a class="brand" href="#hero" aria-label="Boni Borstentiere – Start">
+      <a class="brand" href="#hero" aria-label="Boni Borstentiere – Kinder-Inlinehockey in der List">
         <img src="./img/logo.png" alt="" width="512" height="512" decoding="async" fetchpriority="high">
         <span>Borstentiere</span>
       </a>
@@ -619,9 +623,9 @@
       </button>
       <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
         <ul>
-          <li><a href="#rudel">Rudel</a></li>
-          <li><a href="#training">Training</a></li>
-          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#formate">Wann &amp; wie</a></li>
+          <li><a href="#galerie">Revier</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
         </ul>
       </nav>
@@ -632,8 +636,11 @@
     <section class="hero" id="hero" aria-labelledby="hero-title">
       <img class="hero-logo" src="./img/logo.png" alt="Logo Boni Borstentiere" width="280" height="280" decoding="async">
       <h1 id="hero-title">Boni Borstentiere</h1>
-      <p class="hero-sub">Inline Hockey · Hannover List · Seit 2026</p>
-      <p class="battle-cry">Was sind wir? — Ein Borstentier!</p>
+      <p class="hero-sub">Kinder-Inlinehockey in der List</p>
+      <p class="hero-lead">
+        Wir bauen gerade eine neue Inlinehockey-Aufbaugruppe für Kinder (ca. 6–8 Jahre) in Hannover-List auf.<br>
+        Im Mittelpunkt stehen Bewegung, Spiel und erste Grundlagen mit Schläger und Ball.
+      </p>
       <div class="hymne-player">
         <div class="hymne-label">🎵 Unsere Hymne</div>
         <audio controls preload="metadata" src="./audio/hymne.mp3">
@@ -642,9 +649,10 @@
         <div class="hymne-caption">Was sind wir? — Ein Borstentier!</div>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#training">Zum Probetraining</a>
+        <a class="btn btn-primary" href="#formate">Einfach vorbeikommen</a>
         <a class="btn btn-secondary" href="https://www.instagram.com/boni.borstentiere/" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
+      <p class="hero-note">Kein Leistungsdruck · Einstieg jederzeit möglich</p>
       <div class="scroll-hint" aria-hidden="true">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -652,80 +660,43 @@
       </div>
     </section>
 
-    <section class="rudel" id="rudel" aria-labelledby="rudel-title">
+    <section class="rudel" id="ueber-uns" aria-labelledby="ueber-uns-title">
       <div class="container">
-        <h2 class="section-title" id="rudel-title">Das Rudel</h2>
+        <h2 class="section-title" id="ueber-uns-title">Was ist das hier?</h2>
         <p class="intro">
-          Wir sind die Boni Borstentiere – ein Inline-Hockey-Team aus der Hannoverschen List.
-          Zuhause in der Eilenriede, unterwegs auf Rollen, unbesiegbar als Rudel. Kinder und Erwachsene,
-          die zusammen lernen, schwitzen, fallen, aufstehen und vor allem: Spaß haben.
+          Die Boni Borstentiere sind aktuell keine feste Mannschaft, sondern ein offener Treff und eine Aufbaugruppe für Kinder im Grundschulalter.
         </p>
-        <div class="boni-erklaerung">
-          <p>
-            <strong>Warum heißen wir „Boni“?</strong><br>
-            Weil der Bonifatiusplatz in der List — unser Platz, unser Revier —
-            von allen hier nur „Boni“ genannt wird. Wir sind die Borstentiere
-            vom Boni.
-          </p>
-        </div>
-        <div class="cards-3">
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🐗</div>
-            <h3>Gemeinschaft</h3>
-            <p>Ein Rudel, das zusammenhält. Auf und neben dem Platz.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🏒</div>
-            <h3>Hockey</h3>
-            <p>Inline Hockey mit Herz, Biss und Spielfreude. Für Anfänger und Fortgeschrittene.</p>
-          </article>
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">🌳</div>
-            <h3>Eilenriede</h3>
-            <p>Trainiert im Grünen. Der größte Stadtwald Europas ist unser Revier.</p>
-          </article>
-        </div>
+        <p class="intro">
+          Wir wollen Kindern einen einfachen Einstieg ins Inlinehockey ermöglichen – ohne Leistungsdruck, ohne komplizierte Strukturen, dafür mit viel Bewegung, Spiel und Spaß.
+        </p>
+        <p class="intro">
+          Eltern sind willkommen und oft mit dabei.
+        </p>
       </div>
     </section>
 
-    <section class="training" id="training" aria-labelledby="training-title">
+    <section class="training" id="formate" aria-labelledby="formate-title">
       <div class="container">
-        <h2 class="section-title" id="training-title">Training</h2>
+        <h2 class="section-title" id="formate-title">Wann &amp; wie?</h2>
         <div class="cards-2">
           <article class="training-card">
-            <h3>Kindertraining</h3>
-            <dl>
-              <dt>Alter</dt>
-              <dd>6–12 Jahre</dd>
-              <dt>Trainingszeit</dt>
-              <dd>Demnächst</dd>
-              <dt>Ort</dt>
-              <dd>Wird bekannt gegeben</dd>
-            </dl>
-            <a class="btn btn-primary" href="#kontakt">Probetraining anmelden</a>
+            <h3>Freies Spiel</h3>
+            <p>Samstag 14:00–17:30</p>
+            <p>Offenes Spielen mit Ball und Schläger.</p>
+            <p>Einfach kommen und mitmachen – keine Anmeldung nötig.</p>
           </article>
           <article class="training-card">
-            <h3>Erwachsene</h3>
-            <dl>
-              <dt>Alter</dt>
-              <dd>Ab 18 Jahren</dd>
-              <dt>Trainingszeit</dt>
-              <dd>Demnächst</dd>
-              <dt>Ort</dt>
-              <dd>Wird bekannt gegeben</dd>
-            </dl>
-            <a class="btn btn-primary" href="#kontakt">Probetraining anmelden</a>
+            <h3>Locker angeleitetes Spiel / Training</h3>
+            <p>(im Aufbau)</p>
+            <p>Wir entwickeln gerade zusätzlich ein einfaches, spielerisches Trainingsformat für Kinder.</p>
           </article>
         </div>
         <div class="info-box">
-          <h3>Was brauche ich?</h3>
-          <ul>
-            <li>Inline-Skates</li>
-            <li>Helm</li>
-            <li>Schläger</li>
-            <li>Schoner</li>
-          </ul>
-          <p class="note">Leihmaterial beim Probetraining verfügbar</p>
+          <h3>Wo?</h3>
+          <p class="wo-text">
+            Im Bereich Bonifatiusplatz / Eilenriede in Hannover-List.<br>
+            Der genaue Treffpunkt ist vor Ort leicht zu finden.
+          </p>
         </div>
       </div>
     </section>
@@ -768,10 +739,35 @@
       <p class="galerie-credit">Fotos: Wikimedia Commons · CC BY-SA 4.0</p>
     </section>
 
+    <section class="rudel" id="mitmachen" aria-labelledby="mitmachen-title">
+      <div class="container">
+        <h2 class="section-title" id="mitmachen-title">Mitmachen</h2>
+        <p class="intro">
+          Einfach vorbeikommen und ausprobieren.<br>
+          Vorkenntnisse sind nicht nötig.
+        </p>
+        <p class="intro">
+          Wenn dein Kind Spaß an Bewegung hat und gerne mit Ball und Schläger spielt, passt es gut dazu.
+        </p>
+      </div>
+    </section>
+
+    <section class="rudel" id="helfen" aria-labelledby="helfen-title">
+      <div class="container">
+        <h2 class="section-title" id="helfen-title">Mithelfen?</h2>
+        <p class="intro">
+          Wir suchen 1–2 Menschen, die Lust haben, das Ganze ehrenamtlich mit aufzubauen oder gelegentlich zu unterstützen.
+        </p>
+        <p class="intro">
+          Du musst kein Profi sein – wichtig sind Spaß an Bewegung mit Kindern und ein bisschen Gefühl für Sport.
+        </p>
+      </div>
+    </section>
+
     <section class="cta-borstentier" id="kontakt" aria-labelledby="cta-title">
       <div class="container">
-        <h2 class="section-title" id="cta-title">Borstentier werden</h2>
-        <p>Du willst mitmachen? Ob Kind oder Erwachsene – wir freuen uns auf dich.</p>
+        <h2 class="section-title" id="cta-title">Kontakt</h2>
+        <p>Meld dich gerne, wenn du Fragen hast oder einfach vorbeikommen möchtest.</p>
         <a class="cta-mail" href="mailto:boni.borstentiere@protonmail.com">boni.borstentiere@protonmail.com</a>
         <div class="social-row" aria-label="Instagram">
           <a href="https://www.instagram.com/boni.borstentiere/" target="_blank" rel="noopener noreferrer" aria-label="Boni Borstentiere auf Instagram">
@@ -793,7 +789,7 @@
         <a href="datenschutz.html">Datenschutz</a>
       </div>
     </div>
-    <p class="footer-copy">© 2026 Boni Borstentiere · Made with 🐗 in Hannover</p>
+    <p class="footer-copy">© 2026 Boni Borstentiere · Mit Herz in Hannover gemacht</p>
   </footer>
 
   <script>
