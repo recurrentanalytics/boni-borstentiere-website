@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <title>Datenschutz · Boni Borstentiere</title>
+  <meta name="description" content="Boni Borstentiere – Inline-Hockey aus Hannover List. Zuhause in der Eilenriede. Kinder & Erwachsene, Probetraining, Rudelgeist seit 2026.">
+  <meta property="og:title" content="Boni Borstentiere · Inline Hockey Hannover List">
+  <meta property="og:description" content="Inline Hockey im grünen Revier der Eilenriede. Kinder & Erwachsene willkommen.">
+  <meta property="og:url" content="https://recurrentanalytics.github.io/boni-borstentiere-website/">
+  <meta property="og:image" content="https://recurrentanalytics.github.io/boni-borstentiere-website/img/banner.png">
+  <link rel="icon" href="./img/logo.png" type="image/png">
+  <style>
+    :root {
+      --waldgruen: #2D4A2B;
+      --dunkelgruen: #1E3A1C;
+      --kastanienbraun: #6B4423;
+      --dunkelbraun: #3D2817;
+      --orange: #D97B3A;
+      --creme: #F7E9C0;
+      --hellgruen: #B4BE7F;
+      --header-h: 4.25rem;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--waldgruen);
+      background: var(--creme);
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    .skip {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .skip:focus {
+      position: fixed;
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+      padding: 0.75rem 1rem;
+      background: var(--creme);
+      color: var(--waldgruen);
+      z-index: 2000;
+      outline: 2px solid var(--orange);
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: transparent;
+      transition: background-color 0.35s var(--ease), border-color 0.35s var(--ease);
+      border-bottom: 1px solid transparent;
+    }
+    .page-legal .site-header {
+      background: var(--waldgruen);
+      border-bottom: 1px solid rgba(247, 233, 192, 0.15);
+    }
+    .site-header.is-scrolled {
+      background: var(--waldgruen);
+      border-color: rgba(247, 233, 192, 0.15);
+    }
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      font-size: 0.85rem;
+      color: var(--creme);
+      text-transform: uppercase;
+    }
+    .brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      flex-shrink: 0;
+      display: block;
+    }
+    .site-header:not(.is-scrolled) .brand { color: var(--creme); text-shadow: 0 1px 2px rgba(0,0,0,0.35); }
+    .page-legal .site-header:not(.is-scrolled) .brand { text-shadow: none; }
+    .nav-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 2.75rem;
+      height: 2.75rem;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 6px;
+      color: var(--creme);
+    }
+    .nav-toggle:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .nav-toggle-bar {
+      display: block;
+      height: 2px;
+      width: 1.35rem;
+      margin: 0 auto;
+      background: currentColor;
+      border-radius: 1px;
+      transition: transform 0.3s var(--ease), opacity 0.25s;
+    }
+    .site-header.is-open .nav-toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .site-header.is-open .nav-toggle-bar:nth-child(2) { opacity: 0; }
+    .site-header.is-open .nav-toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .main-nav {
+      position: fixed;
+      inset: var(--header-h) 0 0 0;
+      background: var(--dunkelgruen);
+      padding: 1.5rem 1.25rem 2rem;
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.35s var(--ease), opacity 0.3s;
+    }
+    .site-header.is-open .main-nav {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .main-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .main-nav a {
+      display: block;
+      padding: 0.85rem 0.5rem;
+      color: var(--creme);
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .main-nav a:hover, .main-nav a:focus-visible {
+      background: rgba(247, 233, 192, 0.08);
+      color: var(--hellgruen);
+    }
+    @media (min-width: 768px) {
+      .nav-toggle { display: none; }
+      .main-nav {
+        position: static;
+        inset: auto;
+        background: transparent;
+        padding: 0;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .main-nav ul {
+        flex-direction: row;
+        gap: 0.35rem;
+      }
+      .main-nav a { padding: 0.5rem 0.65rem; font-size: 0.78rem; }
+    }
+    @media (min-width: 1024px) {
+      .main-nav a { font-size: 0.82rem; padding: 0.5rem 0.85rem; }
+    }
+    .legal {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      background: var(--creme);
+    }
+    .legal h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--waldgruen);
+      line-height: 1.15;
+    }
+    .legal h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--waldgruen);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .legal h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--waldgruen);
+      margin-top: 1.75rem;
+      margin-bottom: 0.65rem;
+    }
+    .legal p {
+      line-height: 1.7;
+      color: var(--dunkelgruen);
+      margin: 0 0 1rem;
+    }
+    .legal a {
+      color: var(--orange);
+      text-decoration: underline;
+    }
+    .legal a:hover { opacity: 0.9; }
+    .site-footer {
+      background: var(--dunkelgruen);
+      color: var(--creme);
+      padding: 2rem 1.5rem 1.5rem;
+    }
+    .footer-top {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(247, 233, 192, 0.15);
+    }
+    @media (min-width: 768px) {
+      .footer-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      color: var(--creme);
+    }
+    .footer-brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      flex-shrink: 0;
+      display: block;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+    }
+    .footer-links a {
+      color: var(--hellgruen);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .footer-links a:hover { text-decoration: underline; }
+    .footer-copy {
+      text-align: center;
+      margin: 1.25rem 0 0;
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body class="page-legal">
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html#hero" aria-label="Boni Borstentiere – Start">
+        <img src="./img/logo.png" alt="" width="512" height="512" decoding="async" fetchpriority="high">
+        <span>Borstentiere</span>
+      </a>
+      <button
+        type="button"
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-label="Menü öffnen"
+      >
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+        <ul>
+          <li><a href="index.html#rudel">Rudel</a></li>
+          <li><a href="index.html#training">Training</a></li>
+          <li><a href="index.html#galerie">Galerie</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="legal" aria-labelledby="ds-h1">
+      <h1 id="ds-h1">Datenschutzerklärung</h1>
+
+      <h2>1. Datenschutz auf einen Blick</h2>
+      <h3>Allgemeine Hinweise</h3>
+      <p>
+        Die folgenden Hinweise geben einen einfachen Überblick darüber,
+        was mit Ihren personenbezogenen Daten passiert, wenn Sie diese
+        Website besuchen. Personenbezogene Daten sind alle Daten, mit
+        denen Sie persönlich identifiziert werden können.
+      </p>
+
+      <h3>Datenerfassung auf dieser Website</h3>
+      <p>
+        <strong>Wer ist verantwortlich für die Datenerfassung auf
+        dieser Website?</strong><br>
+        Die Datenverarbeitung auf dieser Website erfolgt durch den
+        Websitebetreiber. Dessen Kontaktdaten können Sie dem
+        <a href="impressum.html">Impressum</a> dieser Website entnehmen.
+      </p>
+      <p>
+        <strong>Wie erfassen wir Ihre Daten?</strong><br>
+        Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese
+        mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie
+        per E-Mail an uns senden.<br>
+        Andere Daten werden automatisch oder nach Ihrer Einwilligung
+        beim Besuch der Website durch unsere IT-Systeme erfasst. Das
+        sind vor allem technische Daten (z.B. Internetbrowser,
+        Betriebssystem oder Uhrzeit des Seitenaufrufs).
+      </p>
+
+      <h2>2. Hosting</h2>
+      <p>
+        Diese Website wird bei GitHub Pages gehostet, einem Dienst der
+        GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107,
+        USA. Beim Besuch unserer Website werden vom Hosting-Anbieter
+        automatisch technische Zugriffsdaten wie IP-Adresse, Datum
+        und Uhrzeit der Anfrage, übertragene Datenmenge und der
+        anfragende Provider in Server-Logfiles gespeichert.
+      </p>
+      <p>
+        Die Nutzung erfolgt auf Grundlage unseres berechtigten
+        Interesses an einer möglichst zuverlässigen Darstellung unserer
+        Website (Art. 6 Abs. 1 lit. f DSGVO). Weitere Informationen
+        finden Sie in der Datenschutzerklärung von GitHub:
+        <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>.
+      </p>
+
+      <h2>3. Allgemeine Hinweise und Pflichtinformationen</h2>
+      <h3>Datenschutz</h3>
+      <p>
+        Die Betreiber dieser Seiten nehmen den Schutz Ihrer
+        persönlichen Daten sehr ernst. Wir behandeln Ihre
+        personenbezogenen Daten vertraulich und entsprechend der
+        gesetzlichen Datenschutzvorschriften sowie dieser
+        Datenschutzerklärung.
+      </p>
+
+      <h3>Hinweis zur verantwortlichen Stelle</h3>
+      <p>
+        Die verantwortliche Stelle für die Datenverarbeitung auf
+        dieser Website ist im <a href="impressum.html">Impressum</a>
+        genannt.
+      </p>
+
+      <h2>4. Datenerfassung auf dieser Website</h2>
+      <h3>Kontakt per E-Mail</h3>
+      <p>
+        Wenn Sie uns per E-Mail kontaktieren, werden Ihre Angaben aus
+        der E-Mail inklusive der von Ihnen dort angegebenen Kontaktdaten
+        zwecks Bearbeitung Ihrer Anfrage und für den Fall von
+        Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht
+        ohne Ihre Einwilligung weiter.
+      </p>
+      <p>
+        Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6
+        Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines
+        Vertrags zusammenhängt oder zur Durchführung vorvertraglicher
+        Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die
+        Verarbeitung auf unserem berechtigten Interesse an der
+        effektiven Bearbeitung der an uns gerichteten Anfragen
+        (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung
+        (Art. 6 Abs. 1 lit. a DSGVO).
+      </p>
+      <p>
+        Für das E-Mail-Postfach nutzen wir den Dienst Proton Mail der
+        Proton AG, Route de la Galaise 32, 1228 Plan-les-Ouates, Schweiz.
+        Proton Mail ist Ende-zu-Ende-verschlüsselt. Weitere Informationen
+        finden Sie in der Datenschutzerklärung von Proton:
+        <a href="https://proton.me/legal/privacy" target="_blank" rel="noopener noreferrer">https://proton.me/legal/privacy</a>.
+      </p>
+
+      <h2>5. Externe Inhalte und Social Media</h2>
+      <h3>Instagram</h3>
+      <p>
+        Auf unserer Website verlinken wir unseren Instagram-Auftritt.
+        Anbieter ist die Meta Platforms Ireland Limited, Merrion Road,
+        Dublin 4, D04 X2K5, Irland. Beim Klick auf den Link werden Sie
+        auf die Website von Instagram weitergeleitet. Wir haben keinen
+        Einfluss auf die dort durch Instagram erhobenen Daten. Nähere
+        Informationen finden Sie in der Datenschutzerklärung von
+        Instagram:
+        <a href="https://privacycenter.instagram.com/policy/" target="_blank" rel="noopener noreferrer">https://privacycenter.instagram.com/policy/</a>
+      </p>
+
+      <h2>6. Ihre Rechte</h2>
+      <p>
+        Sie haben jederzeit das Recht, unentgeltlich Auskunft über
+        Herkunft, Empfänger und Zweck Ihrer gespeicherten
+        personenbezogenen Daten zu erhalten. Sie haben außerdem ein
+        Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie
+        zu weiteren Fragen zum Thema Datenschutz können Sie sich
+        jederzeit an uns wenden. Des Weiteren steht Ihnen ein
+        Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
+      </p>
+      <p>
+        Ihnen stehen zudem das Recht auf Einschränkung der Verarbeitung
+        sowie das Recht auf Datenübertragbarkeit zu den in der DSGVO
+        vorgesehenen Bedingungen zu.
+      </p>
+
+      <h2>7. SSL- bzw. TLS-Verschlüsselung</h2>
+      <p>
+        Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der
+        Übertragung vertraulicher Inhalte eine SSL- bzw.
+        TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen
+        Sie daran, dass die Adresszeile des Browsers von „http://“ auf
+        „https://“ wechselt und am Schloss-Symbol in Ihrer Browserzeile.
+      </p>
+
+      <p><em>Stand: April 2026</em></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <a class="footer-brand" href="index.html#hero">
+        <img src="./img/logo-mono.png" alt="" width="1024" height="1024" decoding="async">
+        <span>Boni Borstentiere · Hannover List</span>
+      </a>
+      <div class="footer-links">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+    <p class="footer-copy">© 2026 Boni Borstentiere · Made with 🐗 in Hannover</p>
+  </footer>
+
+  <script>
+    (function () {
+      var header = document.getElementById('site-header');
+      var toggle = document.getElementById('nav-toggle');
+      var nav = document.getElementById('main-nav');
+      var mq = window.matchMedia('(min-width: 768px)');
+
+      function setScrolled() {
+        header.classList.toggle('is-scrolled', window.scrollY > 50);
+      }
+
+      function closeMenu() {
+        header.classList.remove('is-open');
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.setAttribute('aria-label', 'Menü öffnen');
+        }
+        document.body.style.overflow = '';
+      }
+
+      function openMenu() {
+        header.classList.add('is-open');
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'true');
+          toggle.setAttribute('aria-label', 'Menü schließen');
+        }
+        document.body.style.overflow = 'hidden';
+      }
+
+      function onToggleClick() {
+        if (header.classList.contains('is-open')) closeMenu();
+        else openMenu();
+      }
+
+      function onMqChange() {
+        if (mq.matches) closeMenu();
+      }
+
+      setScrolled();
+      window.addEventListener('scroll', setScrolled, { passive: true });
+
+      if (toggle) toggle.addEventListener('click', onToggleClick);
+
+      mq.addEventListener ? mq.addEventListener('change', onMqChange) : mq.addListener(onMqChange);
+
+      nav.addEventListener('click', function (e) {
+        var t = e.target;
+        if (t.tagName === 'A' && !mq.matches) closeMenu();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && header.classList.contains('is-open')) closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>
