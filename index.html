@@ -3,13 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boni Borstentiere · Kinder-Inlinehockey Hannover List</title>
-  <meta name="description" content="Kinder-Inlinehockey in der List: offener Treff und Aufbaugruppe. Bewegung, Spiel, erste Grundlagen mit Schläger und Ball – ohne Leistungsdruck.">
-  <meta property="og:title" content="Boni Borstentiere · Kinder-Inlinehockey Hannover List">
-  <meta property="og:description" content="Kinder-Inlinehockey in der List: offener Treff und Aufbaugruppe. Bewegung, Spiel, erste Grundlagen mit Schläger und Ball – ohne Leistungsdruck.">
+  <title>Boni Borstentiere & Balding Borstis · Inlinehockey Hannover List</title>
+  <meta name="description" content="Inlinehockey in der List mit zwei Sektionen: Boni Borstentiere (Kinder 6-12) und Balding Borstis (Erwachsene 18+). Offener Einstieg, viel Spaß, kein Leistungsdruck.">
+  <meta property="og:title" content="Boni Borstentiere & Balding Borstis · Inlinehockey Hannover List">
+  <meta property="og:description" content="Inlinehockey in der List mit zwei Sektionen: Boni Borstentiere (Kinder 6-12) und Balding Borstis (Erwachsene 18+). Offener Einstieg, viel Spaß, kein Leistungsdruck.">
   <meta property="og:url" content="https://recurrentanalytics.github.io/boni-borstentiere-website/">
   <meta property="og:image" content="https://recurrentanalytics.github.io/boni-borstentiere-website/img/banner.png">
+  <meta property="og:image:alt" content="Boni Borstentiere und Balding Borstis - Inlinehockey in Hannover List">
+  <meta property="og:image" content="https://recurrentanalytics.github.io/boni-borstentiere-website/img/balding_borstis_og.png">
+  <meta property="og:image:alt" content="Balding Borstis Logo mit 18+ Badge und Haare optional">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Boni Borstentiere & Balding Borstis · Inlinehockey Hannover List">
+  <meta name="twitter:description" content="Zwei Sektionen in der List: Boni Borstentiere (Kinder 6-12) und Balding Borstis (Erwachsene 18+).">
+  <meta name="twitter:image" content="https://recurrentanalytics.github.io/boni-borstentiere-website/img/balding_borstis_og.png">
   <link rel="icon" href="./img/logo.png" type="image/png">
+  <link rel="alternate icon" href="./img/balding_borstis_favicon.png" type="image/png">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
   <style>
     :root {
@@ -87,6 +95,21 @@
       color: var(--creme);
       text-transform: uppercase;
     }
+    .brand-chip {
+      display: none;
+      margin-left: 0.25rem;
+      padding: 0.2rem 0.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(247, 233, 192, 0.5);
+      background: rgba(30, 58, 28, 0.35);
+      color: var(--creme);
+      font-size: 0.64rem;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      font-weight: 700;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
     .brand img {
       width: 40px;
       height: 40px;
@@ -163,6 +186,7 @@
     }
     @media (min-width: 768px) {
       .nav-toggle { display: none; }
+      .brand-chip { display: inline-flex; }
       .main-nav {
         position: static;
         inset: auto;
@@ -197,13 +221,17 @@
       background-color: var(--waldgruen);
       color: var(--creme);
     }
-    .hero::before {
-      content: "";
+    .hero-bg {
       position: absolute;
       inset: 0;
-      background: url("./img/banner.png") center / cover no-repeat;
-      opacity: 0.22;
+      z-index: 0;
       pointer-events: none;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.22;
     }
     .hero::after {
       content: "";
@@ -213,7 +241,7 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath fill='none' stroke='%23000' stroke-opacity='0.07' stroke-width='1' d='M0 40h80M40 0v80M-20 20l120 120M20-20l120 120'/%3E%3C/svg%3E");
       pointer-events: none;
     }
-    .hero > * { position: relative; z-index: 1; }
+    .hero > *:not(.hero-bg) { position: relative; z-index: 1; }
     .hero-logo {
       width: min(220px, 48vw);
       height: auto;
@@ -229,6 +257,9 @@
       text-transform: uppercase;
       color: var(--creme);
       line-height: 1.1;
+    }
+    .hero-title-line {
+      display: block;
     }
     .hero-sub {
       margin: 0 0 1.75rem;
@@ -317,6 +348,15 @@
       border-color: var(--creme);
     }
     .btn-secondary:hover { background: rgba(247, 233, 192, 0.12); }
+    @media (max-width: 640px) {
+      .hero-actions {
+        width: 100%;
+        max-width: 24rem;
+      }
+      .hero-actions .btn {
+        width: 100%;
+      }
+    }
     .scroll-hint {
       position: absolute;
       bottom: 1.5rem;
@@ -455,13 +495,55 @@
       display: flex;
       flex-direction: column;
     }
+    .training-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.9rem;
+      margin-bottom: 0.95rem;
+    }
+    .training-card-logo {
+      width: 70px;
+      flex-shrink: 0;
+      height: auto;
+      margin: 0;
+      opacity: 0.96;
+    }
+    .training-card-logo--balding {
+      width: 70px;
+    }
     .training-card:hover { transform: translateY(-3px); border-color: rgba(247, 233, 192, 0.4); }
     .training-card h3 {
-      margin: 0 0 1rem;
+      margin: 0;
       font-size: 1.1rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--hellgruen);
+    }
+    .training-card-subtitle {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.9em;
+      letter-spacing: 0.06em;
+    }
+    .training-stand {
+      margin: -0.35rem 0 1.35rem;
+      font-size: 0.84rem;
+      letter-spacing: 0.03em;
+      opacity: 0.85;
+    }
+    @media (max-width: 640px) {
+      .training-card-head {
+        align-items: flex-start;
+        gap: 0.7rem;
+      }
+      .training-card-logo,
+      .training-card-logo--balding {
+        width: 60px;
+      }
+      .training-card h3 {
+        font-size: 1rem;
+      }
     }
     .training-card dl { margin: 0 0 1.25rem; }
     .training-card dt {
@@ -553,6 +635,36 @@
     }
     .training-equip-closing--next {
       margin-top: 0.65rem;
+    }
+    .balding-spotlight {
+      background: var(--creme);
+      color: var(--waldgruen);
+      border-top: 1px solid rgba(45, 74, 43, 0.12);
+      border-bottom: 1px solid rgba(45, 74, 43, 0.12);
+    }
+    .balding-spotlight .section-title {
+      color: var(--waldgruen);
+      margin-bottom: 0.8rem;
+    }
+    .balding-spotlight .intro {
+      margin-bottom: 1.75rem;
+    }
+    .balding-spotlight .card {
+      background: rgba(107, 68, 35, 0.06);
+      border-color: rgba(107, 68, 35, 0.18);
+    }
+    .balding-spotlight .card h3 {
+      color: var(--kastanienbraun);
+    }
+    .balding-logo-wrap {
+      margin: 0 0 1.25rem;
+      display: flex;
+      justify-content: center;
+    }
+    .balding-logo-main {
+      width: min(430px, 78vw);
+      height: auto;
+      filter: drop-shadow(0 8px 20px rgba(30, 58, 28, 0.2));
     }
     .training-stack .info-box .wo-text + .wo-text {
       margin-top: 0.75rem;
@@ -899,9 +1011,10 @@
   <a class="skip" href="#main">Zum Inhalt springen</a>
   <header class="site-header" id="site-header">
     <div class="header-inner">
-      <a class="brand" href="#hero" aria-label="Boni Borstentiere – Kinder-Inlinehockey in der List">
+      <a class="brand" href="#hero" aria-label="Borstentiere – Inlinehockey in der List">
         <img src="./img/logo.png" alt="" width="512" height="512" decoding="async" fetchpriority="high">
         <span>Borstentiere</span>
+        <span class="brand-chip" aria-label="Sektionen Kinder und Erwachsene">Kinder &amp; 18+</span>
       </a>
       <button
         type="button"
@@ -917,7 +1030,9 @@
       </button>
       <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
         <ul>
-          <li><a href="#ueber-uns">Über uns</a></li>
+          <li><a href="#ueber-uns">Die Rotte</a></li>
+          <li><a href="#kinder">Kinder</a></li>
+          <li><a href="#balding-sektion">Balding Borstis</a></li>
           <li><a href="#formate">Wann &amp; wie</a></li>
           <li><a href="#galerie">Revier</a></li>
           <li><a href="#bonny-comic">Bonny</a></li>
@@ -929,12 +1044,19 @@
 
   <main id="main">
     <section class="hero" id="hero" aria-labelledby="hero-title">
-      <img class="hero-logo" src="./img/logo.png" alt="Logo Boni Borstentiere" width="280" height="280" decoding="async">
-      <h1 id="hero-title">Boni Borstentiere</h1>
-      <p class="hero-sub">Kinder-Inlinehockey in der List</p>
+      <picture class="hero-bg" aria-hidden="true">
+        <source srcset="./img/banner.webp" type="image/webp">
+        <img src="./img/banner.png" alt="" width="1920" height="1080" loading="eager" decoding="async" fetchpriority="high">
+      </picture>
+      <img class="hero-logo" src="./img/logo.png" alt="Logo der Borstentiere" width="280" height="280" decoding="async">
+      <h1 id="hero-title">
+        <span class="hero-title-line">Boni Borstentiere</span>
+        <span class="hero-title-line">&amp; Balding Borstis</span>
+      </h1>
+      <p class="hero-sub">Inlinehockey in der List · Zwei Sektionen, ein Revier</p>
       <p class="hero-lead">
-        Wir bauen gerade eine neue Inlinehockey-Aufbaugruppe für Kinder (ca. 6–8 Jahre) in Hannover-List auf.<br>
-        Im Mittelpunkt stehen Bewegung, Spiel und erste Grundlagen mit Schläger und Ball.
+        <strong>Boni Borstentiere</strong>: Kinder von 6–12 Jahren.<br>
+        <strong>Balding Borstis</strong>: Erwachsene ab 18+, ausdrücklich auch absolute Anfänger.
       </p>
       <div class="hymne-player">
         <div class="hymne-label">🎵 Unsere Hymne</div>
@@ -944,10 +1066,11 @@
         <div class="hymne-caption">Was sind wir? — Ein Borstentier!</div>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#formate">Einfach vorbeikommen</a>
+        <a class="btn btn-primary" href="#kinder">Zu den Kindern</a>
+        <a class="btn btn-secondary" href="#balding-sektion">Zu den Balding Borstis</a>
         <a class="btn btn-secondary" href="https://www.instagram.com/boni.borstentiere/" target="_blank" rel="noopener noreferrer">Instagram</a>
       </div>
-      <p class="hero-note">Kein Leistungsdruck · Einstieg jederzeit möglich</p>
+      <p class="hero-note">Gleiche Farben, gleicher Spirit · Kein Leistungsdruck<br>Einstieg jederzeit möglich</p>
       <div class="scroll-hint" aria-hidden="true">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -957,36 +1080,45 @@
 
     <section class="rudel" id="ueber-uns" aria-labelledby="ueber-uns-title">
       <div class="container">
-        <h2 class="section-title" id="ueber-uns-title">Was ist das hier?</h2>
+        <h2 class="section-title" id="ueber-uns-title">Die Rotte</h2>
         <div class="ueber-mit-trikots" role="group" aria-label="Über uns mit Trikot-Ansichten">
           <figure class="jersey-flank jersey-flank--left">
-            <img
-              src="./img/jersey_front.png"
-              alt="Grünes Inlinehockey-Trikot der Boni Borstentiere, Vorderseite mit Logo"
-              width="1024"
-              height="1024"
-              loading="lazy"
-              decoding="async">
+            <picture>
+              <source srcset="./img/jersey_front.webp" type="image/webp">
+              <img
+                src="./img/jersey_front.png"
+                alt="Grünes Inlinehockey-Trikot der Boni Borstentiere, Vorderseite mit Logo"
+                width="1024"
+                height="1024"
+                loading="lazy"
+                decoding="async">
+            </picture>
           </figure>
           <div class="ueber-mit-trikots__text">
-            <p class="intro">
-              Die Boni Borstentiere sind aktuell keine feste Mannschaft, sondern ein offener Treff und eine Aufbaugruppe für Kinder im Grundschulalter.
+            <p class="intro" id="kinder">
+              <strong>Boni Borstentiere (Kinder 6–12):</strong> Unsere Kinder-Sektion ist ein offener Treff mit Aufbaucharakter.
+              Im Mittelpunkt stehen Bewegung, Spiel und ein einfacher Einstieg ins Inlinehockey - ohne Leistungsdruck, ohne komplizierte Strukturen.
+            </p>
+            <p class="intro" id="balding-borstis">
+              <strong>Balding Borstis (Erwachsene 18+):</strong> Die neue Erwachsenen-Sektion mit derselben Identität und denselben Teamfarben.
+              Gegründet von jemandem, der seit 4 Wochen auf Rollen steht - also ja: echte Anfänger willkommen.
             </p>
             <p class="intro">
-              Wir wollen Kindern einen einfachen Einstieg ins Inlinehockey ermöglichen – ohne Leistungsdruck, ohne komplizierte Strukturen, dafür mit viel Bewegung, Spiel und Spaß.
-            </p>
-            <p class="intro">
-              Eltern sind willkommen und oft mit dabei.
+              Unser Vibe: zu alt für Ausreden, jung genug für Inlinehockey. Haare optional.
+              Aktuell ohne festen Trainer - wir suchen noch jemanden.
             </p>
           </div>
           <figure class="jersey-flank jersey-flank--right">
-            <img
-              src="./img/jersey_back.png"
-              alt="Grünes Inlinehockey-Trikot der Boni Borstentiere, Rückseite"
-              width="1024"
-              height="1024"
-              loading="lazy"
-              decoding="async">
+            <picture>
+              <source srcset="./img/jersey_back.webp" type="image/webp">
+              <img
+                src="./img/jersey_back.png"
+                alt="Grünes Inlinehockey-Trikot der Boni Borstentiere, Rückseite"
+                width="1024"
+                height="1024"
+                loading="lazy"
+                decoding="async">
+            </picture>
           </figure>
         </div>
       </div>
@@ -995,17 +1127,39 @@
     <section class="training" id="formate" aria-labelledby="formate-title">
       <div class="container">
         <h2 class="section-title" id="formate-title">Wann &amp; wie?</h2>
+        <p class="training-stand">Zeiten und Infos: Stand April 2026</p>
         <div class="cards-2">
           <article class="training-card">
-            <h3>Freies Spiel</h3>
+            <div class="training-card-head">
+              <h3>Boni Borstentiere <span class="training-card-subtitle">(Kinder 6–12)</span></h3>
+              <img
+                class="training-card-logo"
+                src="./img/logo.png"
+                alt="Logo der Boni Borstentiere"
+                width="512"
+                height="512"
+                loading="lazy"
+                decoding="async">
+            </div>
             <p>Samstag 14:00–17:30</p>
-            <p>Offenes Spielen mit Ball und Schläger.</p>
-            <p>Einfach kommen und mitmachen – keine Anmeldung nötig.</p>
+            <p>Offenes Spielen mit Ball und Schläger, dazu einfache Grundlagen in kleinen Spielformen.</p>
+            <p>Einfach kommen und mitmachen - keine Anmeldung nötig.</p>
           </article>
           <article class="training-card">
-            <h3>Locker angeleitetes Spiel / Training</h3>
-            <p>(im Aufbau)</p>
-            <p>Wir entwickeln gerade zusätzlich ein einfaches, spielerisches Trainingsformat für Kinder.</p>
+            <div class="training-card-head">
+              <h3>Balding Borstis <span class="training-card-subtitle">(Erwachsene 18+)</span></h3>
+              <img
+                class="training-card-logo training-card-logo--balding"
+                src="./img/balding_borstis_logo_clean.png"
+                alt="Logo der Balding Borstis"
+                width="758"
+                height="824"
+                loading="lazy"
+                decoding="async">
+            </div>
+            <p>Aktuell im Aufbau - Zeitfenster stimmen wir gerade ab.</p>
+            <p>Perfekt für absolute Anfänger: Wenn du noch wackelig auf Inlinern bist, passt du genau rein.</p>
+            <p>Noch ohne Trainer - wir suchen, bis dahin lernen wir gemeinsam und mit Humor.</p>
           </article>
         </div>
         <div class="training-stack">
@@ -1024,16 +1178,16 @@
             <div id="map" role="region" aria-label="Karte: Treffpunkt Bonifatiusplatz Hannover-List"></div>
           </div>
           <div class="info-box" aria-labelledby="ausruestung-title">
-            <h3 id="ausruestung-title">Was braucht mein Kind?</h3>
+            <h3 id="ausruestung-title">Was braucht man?</h3>
             <ul class="training-equip-list">
-              <li>Helm (ein normaler Fahrradhelm reicht völlig)</li>
+              <li>Helm (ein normaler Fahrradhelm reicht)</li>
               <li>Inlineskates</li>
               <li>Schonerset mit Knie- und Ellenbogenschonern</li>
               <li>Schläger (wenn vorhanden)</li>
               <li>Bälle sind vor Ort</li>
             </ul>
             <p class="training-equip-closing">
-              Für den Einstieg reicht einfache Ausrüstung – vieles kann man erstmal ausprobieren oder teilen.
+              Für den Einstieg reicht einfache Ausrüstung - vieles kann man erst mal ausprobieren oder teilen.
             </p>
             <p class="training-equip-closing training-equip-closing--next">
               Wichtig ist vor allem der Schutz: Helm sowie Knie- und Ellenbogenschoner sollten auf jeden Fall dabei sein.
@@ -1048,6 +1202,51 @@
               Für alle, die vorher Kontakt aufgenommen haben, geben wir rechtzeitig Bescheid.
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="balding-spotlight" id="balding-sektion" aria-labelledby="balding-sektion-title">
+      <div class="container">
+        <h2 class="section-title" id="balding-sektion-title">Balding Borstis im Fokus</h2>
+        <div class="balding-logo-wrap">
+          <img
+            class="balding-logo-main"
+            src="./img/balding_borstis_logo_clean.png"
+            alt="Balding Borstis Logo"
+            width="758"
+            height="824"
+            loading="lazy"
+            decoding="async">
+        </div>
+        <p class="intro">
+          Die Erwachsenen-Sektion der Boni Borstentiere: gleiche Farben, gleicher Spirit, null Elitedenken.
+          Wenn du denkst "Ich kann das noch nicht", bist du wahrscheinlich genau richtig.
+        </p>
+        <div class="cards-3">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🛼</div>
+            <h3>Starterfreundlich</h3>
+            <p>
+              Gegründet von jemandem, der selbst erst seit 4 Wochen auf Inlinern steht.
+              Hier darf man wackeln, lachen und trotzdem spielen.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🐗</div>
+            <h3>Unser Vibe</h3>
+            <p>
+              Zu alt für Ausreden, jung genug für Inlinehockey.
+              Haare optional, Teamgeist Pflicht.
+            </p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🧢</div>
+            <h3>Trainer gesucht</h3>
+            <p>
+              Aktuell ohne festen Trainer. Wer Lust hat, die Sektion mit aufzubauen, ist sehr willkommen.
+            </p>
+          </article>
         </div>
       </div>
     </section>
@@ -1107,16 +1306,19 @@
             aria-expanded="false"
             aria-label="Comic größer anzeigen"
           >
-            <img
-              src="./img/bonny_comic.png"
-              alt=""
-              loading="lazy"
-              decoding="async">
+            <picture>
+              <source srcset="./img/bonny_comic.webp" type="image/webp">
+              <img
+                src="./img/bonny_comic.png"
+                alt=""
+                loading="lazy"
+                decoding="async">
+            </picture>
           </button>
           <figcaption class="bonny-comic-caption">Ein Comic der Boni Borstentiere</figcaption>
         </figure>
         <div class="bonny-cta-wrap">
-          <a class="bonny-cta" href="#mitmachen">Werde Teil der Borstentiere</a>
+          <a class="bonny-cta" href="#mitmachen">Stoß zur Rotte</a>
         </div>
       </div>
     </section>
@@ -1125,11 +1327,14 @@
       <div class="container">
         <h2 class="section-title" id="mitmachen-title">Mitmachen</h2>
         <p class="intro">
-          Einfach vorbeikommen und ausprobieren.<br>
-          Vorkenntnisse sind nicht nötig.
+          Einfach vorbeikommen und mitrollen.<br>
+          Vorkenntnisse sind nicht nötig - weder bei Kindern noch bei Erwachsenen.
         </p>
         <p class="intro">
-          Wenn dein Kind Spaß an Bewegung hat und gerne mit Ball und Schläger spielt, passt es gut dazu.
+          Kinder (6-12) und Erwachsene (18+) sind willkommen, wenn sie Lust auf Bewegung, Teamgeist und Hockey auf Rollen haben.
+        </p>
+        <p class="intro">
+          Für Jugendliche zwischen 13 und 17 Jahren haben wir aktuell noch keine eigene Gruppe - wenn ihr Interesse habt, meldet euch trotzdem gern.
         </p>
       </div>
     </section>
@@ -1149,7 +1354,7 @@
     <section class="cta-borstentier" id="kontakt" aria-labelledby="cta-title">
       <div class="container">
         <h2 class="section-title" id="cta-title">Kontakt</h2>
-        <p>Meld dich gerne, wenn du Fragen hast oder einfach vorbeikommen möchtest.</p>
+        <p>Meld dich gerne, wenn du Fragen hast oder zur Rotte dazustoßen möchtest.</p>
         <a class="cta-mail" href="mailto:boni.borstentiere@protonmail.com">boni.borstentiere@protonmail.com</a>
         <div class="social-row" aria-label="Instagram">
           <a href="https://www.instagram.com/boni.borstentiere/" target="_blank" rel="noopener noreferrer" aria-label="Boni Borstentiere auf Instagram">
@@ -1170,11 +1375,14 @@
   >
     <div class="bonny-lightbox-panel">
       <button type="button" class="bonny-lb-close" aria-label="Schließen">&times;</button>
-      <img
-        class="bonny-lb-img"
-        src="./img/bonny_comic.png"
-        alt="Comic: Bonny und das erste große Spiel — Bonny, das Wildschwein, und die Boni Borstentiere"
-        decoding="async">
+      <picture>
+        <source srcset="./img/bonny_comic.webp" type="image/webp">
+        <img
+          class="bonny-lb-img"
+          src="./img/bonny_comic.png"
+          alt="Comic: Bonny und das erste große Spiel — Bonny, das Wildschwein, und die Boni Borstentiere"
+          decoding="async">
+      </picture>
     </div>
   </div>
 
