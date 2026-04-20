@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://recurrentanalytics.github.io/boni-borstentiere-website/sitemap.xml
